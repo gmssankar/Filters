@@ -1,0 +1,76 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="helloApp">
+<head>
+<title>Hello AngularJS - Search Table - Filter Example</title>
+<link rel="stylesheet" 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<script	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="filtercontroller.js"></script>
+<style>
+	table{
+    border: 1px solid black;
+    table-layout: fixed;
+    width: 200px;
+}
+
+th, td {
+    border: 1px solid black;
+    width: 100px;
+}
+/* .inputData{
+	background-color: grey;
+	} */
+.inputData input{
+	margin-left: 8em;
+	}
+.inputData label{
+	position: absolute;
+}
+
+
+}
+</style>
+</head>
+<!-- Controller name goes here -->
+<body ng-controller="CompanyCtrl">
+
+<p>Enter any Search Text:<input type="text" ng-model="searchKeyword"></p>	
+
+<table class="table">
+	<tr>
+		<th>Name</th>
+		<th>Employees</th>
+		<th>Head Office	</th>
+		<th>Action</th>
+	</tr>
+	<tr ng-repeat="company in companies  | filter: searchKeyword ">
+		<td>{{company.name}}		</td>
+		<td>{{company.employees}}	</td>
+		<td>{{company.headoffice}}		</td>
+		<td><input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow(company.name)"/>
+		</td>
+	</tr>
+</table>
+<h1> Add a new company info</h1>
+<form class="inputData">
+<div>
+<label for="CompanyName">Company Name:</label>
+<input type="text" ng-model="name" id=CompanyName>
+</div>	
+<div>
+<label for="Employees">Employees:</label>
+<input type="text" ng-model="employees" id=Employees>
+</div>
+<div>
+<label for="HeadOffice">Head Office:</label>
+<input type="text" ng-model="headoffice" id=HeadOffice>
+</div>
+<div>
+<p><input type="button" value="Submit" class="btn btn-primary" ng-click="addRow()"/></p>	
+</div>
+</form>
+</body>
+</html>
